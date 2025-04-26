@@ -1,0 +1,136 @@
+<!-- <h2>Users</h2>
+<form (submit)="addUser(); $event.preventDefault();">
+  <input [(ngModel)]="newUser.NameUser" name="name" placeholder="Name">
+  <input [(ngModel)]="newUser.Email" name="email" placeholder="Email">
+  <input [(ngModel)]="newUser.Password" name="password" placeholder="Password">
+  <button type="submit">Add User</button>
+</form>
+<ul>
+  <li *ngFor="let user of users">
+    {{ user.name }} - {{ user.email }}
+    <button (click)="deleteUser(user.id)">Delete</button>
+  </li>
+</ul>
+<mat-card class="user-card">
+    <mat-card-title>Manage Users</mat-card-title>
+    <mat-card-content>
+      <form class="user-form" (submit)="addUser(); $event.preventDefault();" #userForm="ngForm">
+        <div class="form-fields">
+          <mat-form-field appearance="outline" class="form-input">
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="newUser.NameUser" name="name" required>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="form-input">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="newUser.Email" name="email" required>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="form-input">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [(ngModel)]="newUser.Password" name="password" required>
+          </mat-form-field>
+  
+          <button mat-raised-button color="primary" type="submit" class="submit-button">Add User</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-list class="user-list">
+    <mat-list-item *ngFor="let user of users">
+      <div class="user-details">
+        <div class="user-name">{{ user.NameUser }}</div>
+        <div class="user-email">{{ user.Email }}</div>
+      </div>
+      <button mat-icon-button color="warn" (click)="deleteUser(user.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+   -->
+   <div class="container">
+    <mat-toolbar color="primary" class="app-toolbar">
+      <span>User Management System</span>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button aria-label="Settings">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </mat-toolbar>
+  
+    <div class="content-container">
+      <!-- USER FORM CARD -->
+      <mat-card class="user-form-card">
+        <mat-card-header>
+          <mat-card-title>Add New User</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form (submit)="addUser(); $event.preventDefault();" class="user-form">
+            <mat-form-field appearance="fill" class="form-field">
+              <mat-label>Name</mat-label>
+              <input matInput [(ngModel)]="newUser.NameUser" name="name" placeholder="Enter name" required>
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-error *ngIf="!newUser.NameUser">Name is required</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill" class="form-field">
+              <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]="newUser.Email" name="email" placeholder="Enter email" type="email" required>
+              <mat-icon matSuffix>email</mat-icon>
+              <mat-error *ngIf="!newUser.Email">Email is required</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill" class="form-field">
+              <mat-label>Password</mat-label>
+              <input matInput [(ngModel)]="newUser.Password" name="password" placeholder="Enter password" 
+                    [type]="hidePassword ? 'password' : 'text'" required>
+              <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="!newUser.Password">Password is required</mat-error>
+            </mat-form-field>
+            
+            <button mat-raised-button color="primary" type="submit" class="submit-button">
+              <mat-icon>add</mat-icon> Add User
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+  
+      <!-- USERS LIST CARD -->
+      <mat-card class="users-list-card">
+        <mat-card-header>
+          <mat-card-title>Users List</mat-card-title>
+          <mat-card-subtitle>Total users: {{ users.length }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="users-container">
+            <ng-container *ngIf="users.length > 0; else noUsers">
+              <div *ngFor="let user of users" class="user-item">
+                <div class="user-info">
+                  <div class="user-avatar">
+                    <mat-icon class="avatar-icon">account_circle</mat-icon>
+                  </div>
+                  <div class="user-details">
+                    <h3>{{ user.nameUser }}</h3>
+                    <p>{{ user.email }}</p>
+                    <!-- <p>{{ user.email }}</p> -->
+                  </div>
+                </div>
+                <button mat-mini-fab color="warn" (click)="deleteUser(user.id)" class="delete-button" aria-label="Delete user">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </ng-container>
+            <ng-template #noUsers>
+              <div class="no-users">
+                <mat-icon>sentiment_dissatisfied</mat-icon>
+                <p>No users found. Add a new user to get started.</p>
+              </div>
+            </ng-template>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

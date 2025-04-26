@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="toolbar">
+    <span class="logo">Keep It - Management</span>
+    <span class="spacer"></span>
+  
+    <span *ngIf="username" class="username">Hello, {{ username }}</span>
+  
+    <button mat-button (click)="goToUsers()">Users</button>
+    <button mat-button color="accent" (click)="logout()">Logout</button>
+  </mat-toolbar>
+  
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+  

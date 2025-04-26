@@ -1,0 +1,116 @@
+<div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Warranty Management Dashboard</h1>
+      <button mat-raised-button color="primary" (click)="refreshData()" [disabled]="isLoading">
+        <mat-icon>refresh</mat-icon>
+        Refresh Data
+      </button>
+    </div>
+  
+    <!-- Loading and Error States -->
+    <div *ngIf="isLoading" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading warranty data...</p>
+    </div>
+  
+    <div *ngIf="error && !isLoading" class="error-container">
+      <mat-icon color="warn">error_outline</mat-icon>
+      <p>{{ error }}</p>
+      <button mat-raised-button color="primary" (click)="refreshData()">Try Again</button>
+    </div>
+  
+    <!-- Dashboard Content -->
+    <div *ngIf="!isLoading && !error" class="dashboard-content">
+      <!-- Summary Cards -->
+      <div class="summary-cards">
+        <mat-card class="summary-card total-card">
+          <mat-card-content>
+            <div class="card-icon">
+              <mat-icon>inventory_2</mat-icon>
+            </div>
+            <div class="card-data">
+              <h3>Total Warranties</h3>
+              <p class="card-value">{{ totalWarranties }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+  
+        <mat-card class="summary-card expiring-card">
+          <mat-card-content>
+            <div class="card-icon">
+              <mat-icon>schedule</mat-icon>
+            </div>
+            <div class="card-data">
+              <h3>Expiring This Month</h3>
+              <p class="card-value">{{ expiringThisMonth }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+  
+        <mat-card class="summary-card expired-card">
+          <mat-card-content>
+            <div class="card-icon">
+              <mat-icon>event_busy</mat-icon>
+            </div>
+            <div class="card-data">
+              <h3>Expired Warranties</h3>
+              <p class="card-value">{{ expiredWarranties }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+  
+        <mat-card class="summary-card average-card">
+          <mat-card-content>
+            <div class="card-icon">
+              <mat-icon>date_range</mat-icon>
+            </div>
+            <div class="card-data">
+              <h3>Avg. Warranty Length</h3>
+              <p class="card-value">{{ averageWarrantyLength }} <span class="unit">months</span></p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+  
+      <!-- Charts -->
+      <div class="charts-container">
+        <!-- Monthly Expirations Chart -->
+        <mat-card class="chart-card monthly-chart">
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas #monthlyChart></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+  
+        <!-- Category Distribution Chart -->
+        <mat-card class="chart-card category-chart">
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas #categoryChart></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+  
+        <!-- Status Distribution Chart -->
+        <mat-card class="chart-card status-chart">
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas #statusChart></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+  
+        <!-- Trend Chart -->
+        <mat-card class="chart-card trend-chart">
+          <mat-card-content>
+            <div class="chart-container">
+              <canvas #trendChart></canvas>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  
+  
