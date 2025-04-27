@@ -12,4 +12,5 @@ export class AppComponent {
   title = 'Client-Maneger';
 }
 export const baseUrl='https://warranty-server-g7vn.onrender.com/api/'; // URL de la API
+  console.log("app");
   
