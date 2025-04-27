@@ -7,10 +7,10 @@ export const authGuard: CanActivateFn = () => {
   const user = sessionStorage.getItem('user');
   console.log('👤 User from session:', user);
 
-  // if (!user) {
-  //   router.navigate(['/login']);
-  //   return false;
-  // }
+  if (!user) {
+    router.navigate(['/login']);
+    return false;
+  }
 
   return true;
 };

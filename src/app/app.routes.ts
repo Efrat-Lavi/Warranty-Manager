@@ -13,11 +13,11 @@ export const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
-        // canActivate: [authGuard],
+        canActivate: [authGuard],
         children: [
             { path: 'users', component: UsersComponent },
             { path: 'dashboard', component: DashboardComponent },
-            // { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ],
     },
             { path: 'login', component: LoginComponent },
