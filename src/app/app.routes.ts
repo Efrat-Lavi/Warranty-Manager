@@ -13,7 +13,7 @@ export const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
-        canActivate: [authGuard],
+        // canActivate: [authGuard],
         children: [
             { path: 'users', component: UsersComponent },
             { path: 'dashboard', component: DashboardComponent },
@@ -21,5 +21,4 @@ export const routes: Routes = [
         ],
     },
             { path: 'login', component: LoginComponent },
-            // { path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) },
 ];
