@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
   totalWarranties = 0
   expiringThisMonth = 0
   expiredWarranties = 0
-  averageWarrantyLength = 0
+  // averageWarrantyLength = 0
 
   isLoading = true
   error: string | null = null
@@ -163,15 +163,15 @@ export class DashboardComponent implements OnInit {
     this.expiredWarranties = data.filter((w) => new Date(w.expirationDate) < today).length
 
     // Calculate average warranty length in months
-    let totalMonths = 0
-    data.forEach((w) => {
-      const purchaseDate = new Date(w.purchaseDate)
-      const expirationDate = new Date(w.expirationDate)
-      const diffTime = Math.abs(expirationDate.getTime() - purchaseDate.getTime())
-      const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30))
-      totalMonths += diffMonths
-    })
-    this.averageWarrantyLength = Math.round(totalMonths / data.length)
+    // let totalMonths = 0
+    // data.forEach((w) => {
+    //   const purchaseDate = new Date(w.purchaseDate)
+    //   const expirationDate = new Date(w.expirationDate)
+    //   const diffTime = Math.abs(expirationDate.getTime() - purchaseDate.getTime())
+    //   const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30))
+    //   totalMonths += diffMonths
+    // })
+    // this.averageWarrantyLength = Math.round(totalMonths / data.length)
 
     // Generate trend data (last 12 months)
     this.trendData = this.generateTrendData(data)
